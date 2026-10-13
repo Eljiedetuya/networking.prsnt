@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>DHCP Operation in a Home Router</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <b>▣ DHCP Lab</b>
+    <span>IP Addressing Services</span>
+    <button class="alt" id="fs">⛶ Full screen</button>
+  </header>
+  <div id="prog"><i></i></div>
+  <main id="slides"></main>
+  <nav>
+    <button id="pv">◀ Prev</button>
+    <div id="dots"></div>
+    <span id="ct"></span>
+    <button id="nx">Next ▶</button>
+  </nav>
+
+  <template id="simT">
+    <div class="sim">
+      <div>
+        <div class="canvas">
+          <svg id="svg" viewBox="0 0 900 470" role="img" aria-label="Home network topology">
+            <defs>
+              <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0L8,4L0,8z" fill="#f59e0b"/>
+              </marker>
+            </defs>
+            <text x="20" y="28" font-size="17" font-weight="700" fill="#0b1530">Home Network Simulation</text>
+            <text id="intro" x="450" y="240" text-anchor="middle" font-size="15" fill="#64748b">Press “Start Simulation” – the network builds itself step by step.</text>
+            <g id="lans">
+              <path id="l2" class="ln" pathLength="1" d="M160,100 L400,212" stroke="#2563eb" stroke-width="4" fill="none"/>
+              <path id="l1" class="ln" pathLength="1" d="M160,325 L400,238" stroke="#2563eb" stroke-width="4" fill="none"/>
+              <path id="lw" class="ln" pathLength="1" d="M470,250 L560,322" stroke="#ef4444" stroke-width="4" fill="none"/>
+              <path id="lw2" class="ln" pathLength="1" d="M680,340 L750,340" stroke="#ef4444" stroke-width="4" fill="none"/>
+            </g>
+            <g id="Lrouter" class="rv">
+              <text x="450" y="172" text-anchor="middle" font-size="14" font-weight="700" fill="#0891b2">LAN 192.168.1.0/24</text>
+              <g id="rt">
+                <rect x="400" y="190" width="100" height="60" rx="10" fill="#2563eb"/>
+                <path d="M420,190V172M480,190V172" stroke="#1e3a8a" stroke-width="4"/>
+                <circle cx="420" cy="170" r="4" fill="#22d3ee"/>
+                <circle cx="480" cy="170" r="4" fill="#22d3ee"/>
+                <g fill="#bfdbfe">
+                  <rect x="412" y="228" width="12" height="8"/>
+                  <rect x="430" y="228" width="12" height="8"/>
+                  <rect x="448" y="228" width="12" height="8"/>
+                  <rect x="466" y="228" width="12" height="8"/>
+                </g>
+                <text x="450" y="216" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">ROUTER</text>
+              </g>
+              <text x="450" y="272" text-anchor="middle" font-size="13" font-weight="700" fill="#0b1530">Home Router · DHCP Server (LAN)</text>
+              <text x="450" y="289" text-anchor="middle" font-size="13" fill="#2563eb">192.168.1.1/24 · built-in switch</text>
+            </g>
+            <g id="Lpc2" class="rv">
+              <rect x="70" y="60" width="90" height="58" rx="6" fill="#1d4ed8"/>
+              <rect x="77" y="66" width="76" height="40" fill="#bae6fd"/>
+              <rect x="105" y="118" width="20" height="10" fill="#334155"/>
+              <rect x="90" y="128" width="50" height="6" rx="3" fill="#334155"/>
+              <text x="115" y="152" text-anchor="middle" font-weight="700" font-size="14" fill="#0b1530">PC 2</text>
+              <text x="115" y="168" text-anchor="middle" font-size="13" fill="#2563eb">192.168.1.100/24</text>
+              <text x="115" y="184" text-anchor="middle" font-size="11" fill="#16a34a">Lease tracked by DHCP server</text>
+            </g>
+            <g id="Lpool" class="rv">
+              <rect x="600" y="15" width="285" height="118" rx="10" fill="#ecfeff" stroke="#22d3ee" stroke-width="2"/>
+              <text x="612" y="36" font-size="13" font-weight="700" fill="#0e7490">DHCP SERVER CONFIG</text>
+              <g font-size="12" fill="#0b1530">
+                <text x="612" y="58">Pool: 192.168.1.100–192.168.1.200</text>
+                <text x="612" y="80">Subnet mask: 255.255.255.0</text>
+                <text x="612" y="102">Default gateway: 192.168.1.1</text>
+                <text x="612" y="124">DNS server: 8.8.8.8</text>
+              </g>
+            </g>
+            <g id="Lpc1" class="rv">
+              <rect x="70" y="285" width="90" height="58" rx="6" fill="#1d4ed8"/>
+              <rect x="77" y="291" width="76" height="40" id="scr1" fill="#fecaca"/>
+              <rect x="105" y="343" width="20" height="8" fill="#334155"/>
+              <rect x="90" y="351" width="50" height="5" rx="3" fill="#334155"/>
+              <text x="115" y="276" text-anchor="middle" font-weight="700" font-size="14" fill="#0b1530">PC 1</text>
+              <rect x="10" y="366" width="270" height="98" rx="10" fill="#f1f5f9" stroke="#94a3b8"/>
+              <g font-size="12" fill="#0b1530">
+                <text id="t1" x="20" y="386" font-weight="700"></text>
+                <text id="t2" x="20" y="404"></text>
+                <text id="t3" x="20" y="422"></text>
+                <text id="t4" x="20" y="440"></text>
+                <text id="t5" x="20" y="458"></text>
+              </g>
+            </g>
+            <g id="Lok" class="rv">
+              <circle cx="160" cy="292" r="15" fill="#22c55e"/>
+              <path d="M152,292l5,5l9,-10" stroke="#fff" stroke-width="3" fill="none"/>
+            </g>
+            <g id="Lbadge" class="rv">
+              <rect x="340" y="50" width="220" height="48" rx="10" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+              <text id="bt" x="450" y="71" text-anchor="middle" font-weight="700" font-size="15" fill="#c2410c"></text>
+              <text id="bs" x="450" y="89" text-anchor="middle" font-size="12" fill="#0b1530"></text>
+            </g>
+            <g id="Lwan" class="rv">
+              <path d="M580,350a28,28 0 0 1 8,-46a36,36 0 0 1 68,-6a30,30 0 0 1 28,52z" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+              <text x="630" y="338" text-anchor="middle" font-weight="700" font-size="14" fill="#1e3a8a">Internet</text>
+              <rect x="750" y="305" width="100" height="70" rx="8" fill="#334155"/>
+              <g fill="#94a3b8">
+                <rect x="760" y="313" width="80" height="12" rx="2"/>
+                <rect x="760" y="331" width="80" height="12" rx="2"/>
+                <rect x="760" y="349" width="80" height="12" rx="2"/>
+              </g>
+              <text x="800" y="394" text-anchor="middle" font-weight="700" font-size="13" fill="#0b1530">ISP DHCP Server</text>
+              <text x="520" y="318" font-size="12" font-weight="700" fill="#ef4444">WAN</text>
+              <text x="440" y="316" font-size="12" fill="#ef4444" text-anchor="middle">WAN: DHCP client</text>
+              <circle r="6" fill="#f59e0b">
+                <animateMotion dur="2s" repeatCount="indefinite" path="M470,250 L560,322 L750,340"/>
+              </circle>
+            </g>
+            <g id="pk" style="visibility:hidden">
+              <circle r="10" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>
+              <text id="pkl" y="-16" text-anchor="middle" font-size="12" font-weight="700" fill="#b45309"></text>
+            </g>
+          </svg>
+        </div>
+        <div class="ctl">
+          <button id="b0">▶ Start Simulation</button>
+          <button id="bp" class="alt">◀ Previous Step</button>
+          <button id="bn">Next Step ▶</button>
+          <button id="ba" class="alt">Auto Play</button>
+          <button id="bz" class="alt">⏸ Pause</button>
+          <button id="br" class="alt">↺ Reset</button>
+          <em id="sc"></em>
+        </div>
+      </div>
+      <aside class="pres">
+        <h3>What to Say While Presenting</h3>
+        <h4 id="st"></h4>
+        <p id="ex"></p>
+        <h4>Presenter script</h4>
+        <p class="scr" id="sp"></p>
+        <h4>Network status</h4>
+        <p class="stat" id="ns"></p>
+      </aside>
+    </div>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
