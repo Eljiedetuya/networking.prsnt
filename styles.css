@@ -333,12 +333,31 @@ button.alt:hover{background:#dce2e8}
 .pres,.q{background:#fff;border:1px solid #dce1e8;border-radius:8px;color:#202733}
 .pres h3{color:#168f82}
 .pres h4,.ctl em,.fb{color:#596273}
+.dhcp-simulation-slide .presenter-heading,.dhcp-simulation-slide .pres>#ex,.dhcp-simulation-slide .script-heading,.dhcp-simulation-slide .pres>#sp{display:none}
 .scr{border-left-color:#b57916}
 .stat{color:#15803d}
 nav{background:#fff;border-top:1px solid #dce1e8}
 #dots i{background:#cbd2da}
 #dots i.a{background:#168f82}
 .sub{color:#596273}
+.slide.active.dhcp-simulation-slide{display:flex;flex-direction:column;height:calc(100vh - 122px);min-height:0;padding:12px 18px 14px;overflow:hidden}
+.dhcp-simulation-slide>h2{flex:none;margin:0 0 2px;font-size:clamp(22px,2vw,30px)}
+.dhcp-simulation-slide>.sub{flex:none;margin:0 0 10px;font-size:14px}
+.dhcp-simulation-slide .sim{flex:1;min-height:0;grid-template-columns:minmax(0,2.25fr) minmax(300px,.8fr);gap:16px}
+.dhcp-simulation-slide .sim>div:first-child{display:flex;flex-direction:column;min-width:0;min-height:0}
+.dhcp-simulation-slide .canvas{display:flex;flex:1;min-height:0;align-items:center;justify-content:center;padding:8px}
+.dhcp-simulation-slide .canvas svg{width:100%;height:100%;object-fit:contain}
+.dhcp-simulation-slide .pres{display:flex;flex-direction:column;min-height:0;padding:22px}
+.dhcp-simulation-slide .pres .ctl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:auto;padding-top:24px}
+.dhcp-simulation-slide .pres .ctl button{min-height:42px;padding:8px}
+.dhcp-simulation-slide .pres .ctl em{grid-column:1/-1;margin:4px 0 0;text-align:center}
+@media(max-width:900px){
+  .slide.active.dhcp-simulation-slide{height:auto;min-height:calc(100vh - 122px);overflow:visible}
+  .dhcp-simulation-slide .sim{flex:none;grid-template-columns:1fr}
+  .dhcp-simulation-slide .sim .canvas{min-height:340px}
+  .dhcp-simulation-slide .sim .canvas svg{height:auto}
+  .dhcp-simulation-slide .pres .ctl{margin-top:24px}
+}
 @media (max-width: 700px){.service-need-cards{grid-template-columns:1fr;gap:14px}.service-need-card{min-height:160px}.service-need-rule{margin-bottom:22px}.service-need-takeaway{margin-top:24px}}
 @media (max-width: 900px){.dora-explained-content{min-height:0}.dora-explained-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.dora-explained-arrow{display:none}.dora-explained-step{min-height:220px}}
 @media (max-width: 560px){.dora-explained-steps{grid-template-columns:1fr}.dora-explained-step{min-height:170px}.dora-explained-takeaway{margin-top:18px}}
